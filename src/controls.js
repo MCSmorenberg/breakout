@@ -21,11 +21,3 @@ function keyUp(event) {
     goLeft = false;
   }
 }
-
-function movePaddle() {
-  if(goRight === true) {
-    paddleXpos = paddleXpos+4;
-  } else if(goLeft === true) {
-    paddleXpos = paddleXpos-4;
-  }
-}
