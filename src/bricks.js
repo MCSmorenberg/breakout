@@ -1,9 +1,10 @@
 var bricks = [];
+var amountRows = 2;
 var amountBricks = 19;
 var brickXpos = 4;
 var brickYpos = 20;
 
-function Brick(brickXpos, brickYpos, i) {
+function Brick(brickXpos, brickYpos, i, j) {
   this.index = i;
   this.brickXpos = brickXpos;
   this.brickYpos = brickYpos;
@@ -44,25 +45,38 @@ function Brick(brickXpos, brickYpos, i) {
 }
 
 function createBricks() {
-  for (var i = 0; i < amountBricks; i++) {
-    var brick = new Brick(brickXpos, brickYpos, i);
-    bricks.push(brick);
-    drawBrick();
-    brickXpos = brickXpos + 47;
+  for (var i = 0; i < amountRows; i++) {
+    bricks[i] = [];
+    if(i === 1) {
+      brickXpos = 27;
+      brickYpos = brickYpos + 20;
+      amountBricks = amountBricks - 1;
+    }
+    for (var j = 0; j < amountBricks; j++) {
+      var brick = new Brick(brickXpos, brickYpos, i, j);
+      // debugger;
+      bricks[i].push(brick);
+      drawBrick();
+      brickXpos = brickXpos + 47;
+    }
   }
 }
 createBricks();
 
 function drawBrick() {
   for (var i = 0; i < bricks.length; i++) {
-    ctx.beginPath();
-    ctx.rect(bricks[i].brickXpos, bricks[i].brickYpos, bricks[i].brickWidth, bricks[i].brickHeight);
-    if(bricks[i].visible){
-      bricks[i].brickCollision();
+    // debugger;
+    for (var j = 0; j < bricks[i].length; j++) {
+      ctx.beginPath();
+      // debugger;
+      ctx.rect(bricks[i][j].brickXpos, bricks[i][j].brickYpos, bricks[i][j].brickWidth, bricks[i][j].brickHeight);
+      if(bricks[i][j].visible){
+        bricks[i][j].brickCollision();
+      }
+      ctx.fillStyle = "#f44e42";
+      ctx.fill();
+      ctx.closePath();
     }
-    ctx.fillStyle = "#f44e42";
-    ctx.fill();
-    ctx.closePath();
   }
 }
 
