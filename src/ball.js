@@ -8,11 +8,11 @@ var ballSpeedY = 4;
 var ballSpeed = Math.sqrt((ballSpeedX*ballSpeedX)+(ballSpeedY*ballSpeedY));
 
 function drawBall() {
-    ctx.beginPath();
-    ctx.arc(ballX, ballY, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#37B34E";
-    ctx.fill();
-    ctx.closePath();
+  ctx.beginPath();
+  ctx.arc(ballX, ballY, ballRadius, 0, Math.PI*2);
+  ctx.fillStyle = "#37B34E";
+  ctx.fill();
+  ctx.closePath();
 }
 
 function ballCollisionWall() {
