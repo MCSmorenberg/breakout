@@ -1,14 +1,14 @@
 var bricks = [];
-var amountRows = 2;
+var amountRows = 10;
 var amountBricks = 19;
-var brickXpos = 4;
+var brickXpos = 3;
 var brickYpos = 20;
 
 function Brick(brickXpos, brickYpos, i, j) {
   this.index = i;
   this.brickXpos = brickXpos;
   this.brickYpos = brickYpos;
-  this.brickWidth = 45;
+  this.brickWidth = 44;
   this.brickHeight = 18;
   this.visible = true;
   this.brickCollision = function() {
@@ -47,18 +47,19 @@ function Brick(brickXpos, brickYpos, i, j) {
 function createBricks() {
   for (var i = 0; i < amountRows; i++) {
     bricks[i] = [];
-    if(i === 1) {
-      brickXpos = 27;
-      brickYpos = brickYpos + 20;
-      amountBricks = amountBricks - 1;
+
+    if(i != 0 && i%2 != 0) {
+      brickXpos = 26;
     }
     for (var j = 0; j < amountBricks; j++) {
       var brick = new Brick(brickXpos, brickYpos, i, j);
-      // debugger;
+
       bricks[i].push(brick);
       drawBrick();
-      brickXpos = brickXpos + 47;
+      brickXpos = brickXpos + 46;
     }
+    brickXpos = 3;
+    brickYpos = brickYpos + 20;
   }
 }
 createBricks();

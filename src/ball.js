@@ -4,7 +4,7 @@ var ballX = 390;
 var ballY = canvas.height-350;
 
 var ballSpeedX = 0;
-var ballSpeedY = 3;
+var ballSpeedY = 4;
 var ballSpeed = Math.sqrt((ballSpeedX*ballSpeedX)+(ballSpeedY*ballSpeedY));
 
 function drawBall() {

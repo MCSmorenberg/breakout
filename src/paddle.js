@@ -12,7 +12,7 @@ function movePaddle() {
 }
 
 function collisionPaddle() {
-  if(ballY == paddleYpos-ballRadius && ballX >= paddleXpos && ballX < paddleXpos+paddleWidth) {
+  if(ballY >= paddleYpos-ballRadius && ballY <= paddleYpos+paddleHeight-ballRadius && ballX >= paddleXpos && ballX < paddleXpos+paddleWidth) {
     var n = (ballX + ballRadius - paddleXpos)/(paddleWidth + ballRadius);
     var phi =  0.25*Math.PI*(2*n - 1); //pi/4 = 45
 
