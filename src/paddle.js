@@ -2,12 +2,13 @@ var paddleXpos = canvas.width/2;
 var paddleYpos = canvas.height-50;
 var paddleWidth = 120;
 var paddleHeight = 15;
+var paddleSpeed = 4;
 
 function movePaddle() {
-  if(goRight === true) {
-    paddleXpos = paddleXpos+4;
-  } else if(goLeft === true) {
-    paddleXpos = paddleXpos-4;
+  if(goRight === true && paddleXpos < canvas.width-paddleWidth) {
+    paddleXpos = paddleXpos + paddleSpeed;
+  } else if(goLeft === true && paddleXpos > 0) {
+    paddleXpos = paddleXpos - paddleSpeed;
   }
 }
 

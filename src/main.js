@@ -6,6 +6,8 @@ function draw() {
   drawPaddle();
   drawBrick();
   drawBall();
+  drawScore();
+  drawLives();
   collisionPaddle();
   ballCollisionWall();
 }

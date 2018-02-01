@@ -2,7 +2,8 @@ var bricks = [];
 var amountRows = 10;
 var amountBricks = 19;
 var brickXpos = 3;
-var brickYpos = 20;
+var brickYpos = 30;
+var score = 0;
 
 function Brick(brickXpos, brickYpos, i, j) {
   this.index = i;
@@ -13,7 +14,6 @@ function Brick(brickXpos, brickYpos, i, j) {
   this.brickHeight = 18;
   this.visible = true;
   this.brickCollision = function() {
-
     if(
       // Bottom
       ballY < this.brickYpos+this.brickHeight+ballRadius &&
@@ -30,6 +30,7 @@ function Brick(brickXpos, brickYpos, i, j) {
       this.brickHeight = 0;
       this.brickWidth = 0;
       this.visible = false;
+      score++;
     } else if(
       // Right
       ballX < this.brickXpos+this.brickWidth+ballRadius &&
@@ -46,8 +47,8 @@ function Brick(brickXpos, brickYpos, i, j) {
       this.brickHeight = 0;
       this.brickWidth = 0;
       this.visible = false;
+      score++;
     }
-
   }
 }
 
@@ -58,6 +59,7 @@ function createBricks() {
     if(i != 0 && i%2 != 0) {
       brickXpos = 26;
     }
+
     for (var j = 0; j < amountBricks; j++) {
       var brick = new Brick(brickXpos, brickYpos, i, j);
 
@@ -68,6 +70,7 @@ function createBricks() {
     brickXpos = 3;
     brickYpos = brickYpos + 20;
   }
+  resetBricks = false;
 }
 createBricks();
 
@@ -84,4 +87,10 @@ function drawBrick() {
       ctx.closePath();
     }
   }
+}
+
+function drawScore() {
+    ctx.font = "18px Comic Sans MS";
+    ctx.fillStyle = "#3498DB";
+    ctx.fillText("Score: "+score, 8, 22);
 }
