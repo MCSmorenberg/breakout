@@ -6,19 +6,48 @@ var brickYpos = 20;
 
 function Brick(brickXpos, brickYpos, i, j) {
   this.index = i;
+  this.index2 = j;
   this.brickXpos = brickXpos;
   this.brickYpos = brickYpos;
   this.brickWidth = 44;
   this.brickHeight = 18;
   this.visible = true;
   this.brickCollision = function() {
-    // Bottom
-    if(ballY < this.brickYpos+this.brickHeight && ballX >= this.brickXpos && ballX <= this.brickXpos+this.brickWidth) {
+
+    if(
+      // Bottom
+      ballY < this.brickYpos+this.brickHeight+ballRadius &&
+      ballY > this.brickYpos+(this.brickHeight-3) && // -3 is to create a bounce area
+      ballX > this.brickXpos &&
+      ballX < (this.brickXpos-ballRadius)+(this.brickWidth+1) ||  //Not sure if 1 is needed
+      // Top
+      ballY > this.brickYpos-ballRadius &&
+      ballY < this.brickYpos + 3 &&
+      ballX > this.brickXpos &&
+      ballX < this.brickXpos+(this.brickWidth)
+    ) {
       ballSpeedY = -ballSpeedY;
       this.brickHeight = 0;
       this.brickWidth = 0;
       this.visible = false;
+    } else if(
+      // Right
+      ballX < this.brickXpos+this.brickWidth+ballRadius &&
+      ballX > this.brickXpos+(this.brickWidth-3) &&
+      ballY > this.brickYpos &&
+      ballY < this.brickYpos+this.brickHeight ||
+      // Left
+      ballX > this.brickXpos-ballRadius &&
+      ballX < this.brickXpos+3 &&
+      ballY > this.brickYpos &&
+      ballY < this.brickYpos+this.brickHeight
+    ) {
+      ballSpeedX = -ballSpeedX;
+      this.brickHeight = 0;
+      this.brickWidth = 0;
+      this.visible = false;
     }
+
   }
 }
 
