@@ -6,8 +6,6 @@ function draw() {
   drawPaddle();
   drawBrick();
   drawBall();
-  ballX += ballSpeedX;
-  ballY += ballSpeedY;
   collisionPaddle();
   ballCollisionWall();
 }

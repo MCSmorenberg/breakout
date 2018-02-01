@@ -19,19 +19,6 @@ function collisionPaddle() {
     ballSpeedY = -ballSpeed*Math.cos(phi);
     ballSpeedX = ballSpeed*Math.sin(phi);
   }
-  // if(ballY == paddleYpos+paddleHeight+ballRadius && ballX >= paddleXpos-ballRadius && ballX < (paddleXpos+paddleHeight)+paddleWidth-(ballRadius*2)) {
-  //   console.log('bottom paddle');
-  //   ballSpeedY = -ballSpeedY;
-  // }
-  //
-  // if (ballX == paddleXpos-ballRadius && ballY >= paddleYpos && ballY < paddleYpos+paddleHeight) {
-  //   console.log('left side paddle');
-  //   ballSpeedX = -ballSpeedX;
-  // }
-  // if (ballX == paddleXpos+paddleWidth+ballRadius && ballY >= paddleYpos && ballY < paddleYpos+paddleHeight) {
-  //   console.log('right side paddle');
-  //   ballSpeedX = ballSpeedX*-1;
-  // }
 }
 
 function drawPaddle() {

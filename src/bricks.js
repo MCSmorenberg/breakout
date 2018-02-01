@@ -6,41 +6,48 @@ var brickYpos = 20;
 
 function Brick(brickXpos, brickYpos, i, j) {
   this.index = i;
+  this.index2 = j;
   this.brickXpos = brickXpos;
   this.brickYpos = brickYpos;
   this.brickWidth = 44;
   this.brickHeight = 18;
   this.visible = true;
   this.brickCollision = function() {
-    // if(ballY == this.brickYpos-ballRadius && ballX >= this.brickXpos && ballX < this.brickXpos+this.brickWidth) {
-    //   console.log('top this.brick');
-    //   ballSpeedY = -ballSpeedY;
-    // }
-    // if(ballY == this.brickYpos + this.brickHeight + ballRadius && ballX >= this.brickXpos-ballRadius && ballX < (this.brickXpos+this.brickHeight)+this.brickWidth-(ballRadius*2)) {
-    //   console.log('bottom this.brick');
-    //   ballSpeedY = -ballSpeedY;
-    // }
-    //Bottom
-    if(ballY < this.brickYpos+this.brickHeight+ballRadius && ballX >= this.brickXpos-ballRadius && ballX < this.brickXpos+this.brickWidth-ballRadius) {
+
+    if(
+      // Bottom
+      ballY < this.brickYpos+this.brickHeight+ballRadius &&
+      ballY > this.brickYpos+(this.brickHeight-3) && // -3 is to create a bounce area
+      ballX > this.brickXpos &&
+      ballX < (this.brickXpos-ballRadius)+(this.brickWidth+1) ||  //Not sure if 1 is needed
+      // Top
+      ballY > this.brickYpos-ballRadius &&
+      ballY < this.brickYpos + 3 &&
+      ballX > this.brickXpos &&
+      ballX < this.brickXpos+(this.brickWidth)
+    ) {
       ballSpeedY = -ballSpeedY;
       this.brickHeight = 0;
       this.brickWidth = 0;
       this.visible = false;
+    } else if(
+      // Right
+      ballX < this.brickXpos+this.brickWidth+ballRadius &&
+      ballX > this.brickXpos+(this.brickWidth-3) &&
+      ballY > this.brickYpos &&
+      ballY < this.brickYpos+this.brickHeight ||
+      // Left
+      ballX > this.brickXpos-ballRadius &&
+      ballX < this.brickXpos+3 &&
+      ballY > this.brickYpos &&
+      ballY < this.brickYpos+this.brickHeight
+    ) {
+      ballSpeedX = -ballSpeedX;
+      this.brickHeight = 0;
+      this.brickWidth = 0;
+      this.visible = false;
     }
-    // if (ballX > this.brickXpos-ballRadius && ballY >= this.brickYpos && ballY < this.brickYpos+this.brickHeight) {
-    //   console.log('left side this.brick');
-    //   ballSpeedX = -ballSpeedX;
-    //   this.brickHeight = 0;
-    //   this.brickWidth = 0;
-    //   this.visible = false;
-    // }
-    // if (ballX < this.brickXpos+this.brickWidth+ballRadius && ballY >= this.brickYpos && ballY < this.brickYpos+this.brickHeight) {
-    //   console.log('right side this.brick');
-    //   ballSpeedX = ballSpeedX*-1;
-    //   this.brickHeight = 0;
-    //   this.brickWidth = 0;
-    //   this.visible = false;
-    // }
+
   }
 }
 
@@ -66,10 +73,8 @@ createBricks();
 
 function drawBrick() {
   for (var i = 0; i < bricks.length; i++) {
-    // debugger;
     for (var j = 0; j < bricks[i].length; j++) {
       ctx.beginPath();
-      // debugger;
       ctx.rect(bricks[i][j].brickXpos, bricks[i][j].brickYpos, bricks[i][j].brickWidth, bricks[i][j].brickHeight);
       if(bricks[i][j].visible){
         bricks[i][j].brickCollision();
@@ -80,23 +85,3 @@ function drawBrick() {
     }
   }
 }
-
-// function collisionBrick() {
-//   if(ballY == brickYpos-ballRadius && ballX >= brickXpos && ballX < brickXpos+brickWidth) {
-//     console.log('top brick');
-//     ballSpeedY = -ballSpeedY;
-//   }
-//   if(ballY == brickYpos+brickHeight+ballRadius && ballX >= brickXpos-ballRadius && ballX < (brickXpos+brickHeight)+brickWidth-(ballRadius*2)) {
-//     console.log('bottom brick');
-//     ballSpeedY = -ballSpeedY;
-//   }
-//
-//   if (ballX == brickXpos-ballRadius && ballY >= brickYpos && ballY < brickYpos+brickHeight) {
-//     console.log('left side brick');
-//     ballSpeedX = -ballSpeedX;
-//   }
-//   if (ballX == brickXpos+brickWidth+ballRadius && ballY >= brickYpos && ballY < brickYpos+brickHeight) {
-//     console.log('right side brick');
-//     ballSpeedX = ballSpeedX*-1;
-//   }
-// }
