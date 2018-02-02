@@ -64,13 +64,13 @@ function createBricks() {
       var brick = new Brick(brickXpos, brickYpos, i, j);
 
       bricks[i].push(brick);
-      drawBrick();
       brickXpos = brickXpos + 46;
+
+      drawBrick();
     }
     brickXpos = 3;
     brickYpos = brickYpos + 20;
   }
-  resetBricks = false;
 }
 createBricks();
 
@@ -90,7 +90,11 @@ function drawBrick() {
 }
 
 function drawScore() {
-    ctx.font = "18px Comic Sans MS";
+    ctx.font = "18px " + font;
     ctx.fillStyle = "#3498DB";
     ctx.fillText("Score: "+score, 8, 22);
+}
+
+function checkReset() {
+
 }
