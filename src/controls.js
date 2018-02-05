@@ -1,23 +1,32 @@
 var goRight = false;
 var goLeft = false;
+var continueGame = false;
 
 document.addEventListener("keydown", keyDown, false);
 document.addEventListener("keyup", keyUp, false);
 
 function keyDown(event) {
-  if(event.keyCode === 39) {
-    goRight = true;
-  }
-  else if(event.keyCode === 37) {
-    goLeft = true;
+  switch (event.keyCode) {
+    case 39:
+      goRight = true;
+      break;
+    case 37:
+      goLeft = true;
+      break;
+    case 32:
+      continueGame = true;
   }
 }
 
 function keyUp(event) {
-  if(event.keyCode === 39) {
-    goRight = false;
-  }
-  else if(event.keyCode === 37) {
-    goLeft = false;
+  switch (event.keyCode) {
+    case 39:
+      goRight = false;
+      break;
+    case 37:
+      goLeft = false;
+      break;
+    case 32:
+      continueGame = false;
   }
 }
