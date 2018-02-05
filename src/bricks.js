@@ -94,7 +94,3 @@ function drawScore() {
     ctx.fillStyle = "#3498DB";
     ctx.fillText("Score: "+score, 8, 22);
 }
-
-function checkReset() {
-
-}

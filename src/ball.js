@@ -95,5 +95,5 @@ function drawURDead() {
 function drawContinue() {
   ctx.font = "20px " + font;
   ctx.fillStyle = "#3498DB";
-  ctx.fillText("(Press space bar to continue)", 333, canvas.height/2+90);
+  ctx.fillText("(Press SPACE BAR to continue)", 333, canvas.height/2+95);
 }
